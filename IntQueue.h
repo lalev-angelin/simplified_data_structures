@@ -11,7 +11,7 @@
 using namespace std;
 
 #define Pointer std::shared_ptr<IntQueueElement>
-#define makeIntQueueElement(X) (std::make_shared<IntQueueElement<T>>(X))
+#define makeIntQueueElement(X) (std::make_shared<IntQueueElement>(X))
 
 class IntQueueElement {
 public:
