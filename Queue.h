@@ -10,15 +10,15 @@
 
 using namespace std;
 
-#define Pointer shared_ptr<T>
-#define newQueueElement(X) (make_ptr<T>(X))
+#define Pointer shared_ptr<QueueElement<T>>
+#define newQueueElement(X) (make_shared<QueueElement<T>>(X))
 
 template <class T>
 class QueueElement {
 public:
     Pointer next;
     T value;
-    QueueElement(T newValue);
+    explicit QueueElement(T newValue);
 };
 
 template<class T>
@@ -39,8 +39,44 @@ QueueElement<T>::QueueElement(T newValue) : value(newValue), next(nullptr) {}
 
 
 template<class T>
-Queue<T>::Queue() {
+Queue<T>::Queue() : first(nullptr), last(nullptr) {};
 
+template<class T>
+void Queue<T>::pushLast(T value) {
+    Pointer tmp = newQueueElement(value);
+    if (last != nullptr) {
+        last->next = tmp;
+        last = tmp;
+    } else {
+        last = tmp;
+        first = tmp;
+    }
+}
+
+template<class T>
+optional<T> Queue<T>::popFirst() {
+    if (first == nullptr) return {};
+     Pointer tmp = first;
+     first = first->next;
+     if (first == nullptr) {
+         last = nullptr;
+     }
+     return tmp->value;
+}
+
+template<class T>
+optional<T> Queue<T>::peekFirst() {
+    if (first==nullptr) return {};
+    return first->value;
+}
+
+template<class T>
+void Queue<T>::forEach(void (*consumer)(T &)) {
+    Pointer tmp = first;
+    while (tmp!=nullptr) {
+        consumer(tmp->value);
+        tmp = tmp->next;
+    }
 }
 
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Stack.h"
+#include "Queue.h"
 #include "IntStack.h"
 #include "IntQueue.h"
 
@@ -63,5 +64,17 @@ int main() {
     cout<<iQueue.popFirst().value()<<endl;   // Prints: 19   iQueue: empty
     cout<<iQueue.popFirst().has_value()<<endl;  // Prints: 0   /false/
 
-    auto Queue<String>
+    auto queue = Queue<string>();   //Queue: empty
+    queue.pushLast("Alpha");  //Queue: Alpha
+    queue.pushLast("Beta");   //Queue: Alpha Beta
+    queue.pushLast("Gamma");  //Queue: Alpha Beta Gamma
+    queue.forEach(stringPrinter); // Prints: Alpha Beta Gamma
+    cout<<endl;
+    cout<<queue.popFirst().value()<<endl;  // Prints: Alpha  Queue: Beta Gamma
+    cout<<queue.popFirst().value()<<endl;  // Prints: Beta   Queue: Gamma
+    cout<<queue.peekFirst().value()<<endl; // Prints: Gamma  Queue: Gamma
+    cout<<queue.popFirst().value()<<endl;  // Prints: Gamma  Queue: empty
+    cout<<queue.popFirst().has_value()<<endl; // Prints: 0   /false/
+
+
 }
