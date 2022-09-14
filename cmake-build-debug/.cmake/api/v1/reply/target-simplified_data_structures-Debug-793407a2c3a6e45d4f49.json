@@ -93,7 +93,9 @@
 				2,
 				3,
 				4,
-				5
+				5,
+				6,
+				7
 			]
 		}
 	],
@@ -128,6 +130,16 @@
 		{
 			"backtrace" : 1,
 			"path" : "Tree.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Deque.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "IntDeque.h",
 			"sourceGroupIndex" : 1
 		}
 	],
