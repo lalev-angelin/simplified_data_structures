@@ -1,3 +1,0 @@
-/home/lalev/CLionProjects/simplified_data_structures/cmake-build-debug/CMakeFiles/simplified_data_structures.dir
-/home/lalev/CLionProjects/simplified_data_structures/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/lalev/CLionProjects/simplified_data_structures/cmake-build-debug/CMakeFiles/rebuild_cache.dir

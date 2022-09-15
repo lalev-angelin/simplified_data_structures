@@ -4,6 +4,7 @@
 #include "Queue.h"
 #include "IntStack.h"
 #include "IntQueue.h"
+#include "SortedBinTree.h"
 
 using namespace std;
 
@@ -76,5 +77,12 @@ int main() {
     cout<<queue.popFirst().value()<<endl;  // Prints: Gamma  Queue: empty
     cout<<queue.popFirst().has_value()<<endl; // Prints: 0   /false/
 
-
+    auto tree = SortedBinTree<int>();
+    tree.insert(5);
+    tree.insert(2);
+    tree.insert(10);
+    tree.insert(1);
+    tree.insert(6);
+    tree.insert(2);
+    tree.insert(3);
 }

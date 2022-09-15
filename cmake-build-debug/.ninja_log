@@ -1,7 +1,0 @@
-# ninja log v5
-949	1040	1663049087366612222	simplified_data_structures	1517edc20fdd84ec
-1	949	1663049087274611971	CMakeFiles/simplified_data_structures.dir/main.cpp.o	3029be8a127c4fea
-0	20	1663123362907932889	build.ninja	e22825093f49cb05
-1	246	1662708834474196445	CMakeFiles/simplified_data_structures.dir/Stack.cpp.o	f986d4875b26178a
-0	2	0	clean	99970056673bd9a5
-1	258	1662708834486196501	CMakeFiles/simplified_data_structures.dir/IntStack.cpp.o	a495eff536089eea
