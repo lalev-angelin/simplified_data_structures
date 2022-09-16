@@ -14,7 +14,7 @@
 using namespace std;
 
 class IntDequeElement {
-public:
+protected:
     int value;
     Pointer previous;
     Pointer next;

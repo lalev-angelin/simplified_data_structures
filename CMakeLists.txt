@@ -3,8 +3,5 @@ project(simplified_data_structures)
 
 set(CMAKE_CXX_STANDARD 17)
 
-<<<<<<< Updated upstream
-add_executable(simplified_data_structures main.cpp Stack.h IntStack.h IntQueue.h Queue.h Tree.h Deque.h IntDeque.h)
-=======
-add_executable(simplified_data_structures main.cpp Stack.h IntStack.h IntQueue.h Queue.h SortedBinTree.h)
->>>>>>> Stashed changes
+
+add_executable(simplified_data_structures main.cpp Stack.h IntStack.h IntQueue.h Queue.h Deque.h IntDeque.h SortedBinTree.h)

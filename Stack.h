@@ -22,7 +22,7 @@ public:
 
 
 template <class T> class Stack {
-private:
+protected:
     Pointer top;
 public:
     Stack();

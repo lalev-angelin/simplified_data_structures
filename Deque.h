@@ -22,7 +22,7 @@ public:
 };
 
 template <class T> class Deque {
-private:
+protected:
     Pointer first;
     Pointer last;
 public:

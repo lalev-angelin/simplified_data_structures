@@ -21,7 +21,7 @@ public:
 };
 
 class IntQueue {
-private:
+protected:
     Pointer first;
     Pointer last;
 public:

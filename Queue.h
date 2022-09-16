@@ -23,7 +23,7 @@ public:
 
 template<class T>
 class Queue {
-private:
+protected:
     Pointer first;
     Pointer last;
 public:

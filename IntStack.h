@@ -21,7 +21,7 @@ public:
 };
 
 class IntStack {
-private:
+protected:
     Pointer top;
 public:
     IntStack();
