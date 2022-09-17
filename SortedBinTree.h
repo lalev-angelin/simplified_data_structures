@@ -29,18 +29,14 @@ protected:
     Pointer root;
     Pointer& findNearestNodeNonRecursive(T value, Pointer &start);
     Pointer& findLastLeft(Pointer &start);
+    void walkInOrderRecursive(void (*consumer)(T& value))
 public:
     SortedBinTree();
     void insert(T value);
     bool remove(T value);
-//    bool has(T value);
-//    void forEach(void (*consumer)(T& value));
-//
-//
-//    void insert(T value, int (*comparator)(T value));
-//    bool has(bool (*predicate)(T value));
-//    bool remove(bool (*predicate)(T value));
-//
+    bool has(T value);
+    void forEach(void (*consumer)(T& value));
+
 //    Queue<T> findAll(bool (*predicate)(T value));
 };
 
@@ -72,10 +68,12 @@ Pointer& SortedBinTree<T>::findNearestNodeNonRecursive(T value, Pointer &start) 
             if (current->left==nullptr) return current->left;
             previous = current;
             current = current->left;
+            direction = D_LEFT;
         } else {
             if (current->right==nullptr) return current->right;
             previous = current;
             current = current->right;
+            direction = D_RIGHT;
         }
     }
 }
@@ -116,13 +114,32 @@ bool SortedBinTree<T>::remove(T value) {
 
     Pointer& node = findNearestNodeNonRecursive(value, root);
     if (node!=nullptr) {
-        node==nullptr;
+        if (node->right==nullptr) {
+            node = node->left;
+        } else {
+            Pointer &next = findLastLeft(node->right);
+            Pointer tmp = newSortedBinTreeElement(next->value);
+            tmp->left = node->left;
+            tmp->right = node->right;
+            node = tmp;
+            next = next->right;
+        }
         return true;
     }
 
     return false;
 }
 
+template<class T>
+bool SortedBinTree<T>::has(T value) {
+    Pointer node = findNearestNodeNonRecursive(value, root);
+    return node!=nullptr;
+}
+
+template<class T>
+void SortedBinTree<T>::forEach(void (*consumer)(T &)) {
+
+}
 
 
 #undef Pointer

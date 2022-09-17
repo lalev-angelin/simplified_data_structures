@@ -83,5 +83,8 @@ int main() {
     tree.insert(1);
     tree.insert(2);
     tree.insert(3);
+    tree.remove(2);
+    tree.remove(5);
     tree.remove(3);
+    tree.remove(1);
 }
