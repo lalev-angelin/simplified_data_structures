@@ -1,50 +1,48 @@
 //
-// Created by lalev on 18.09.22.
+// Created by lalev on 13.09.22.
 //
 
-#ifndef SIMPLIFIED_DATA_STRUCTURES_SORTEDBINTREE_H
-#define SIMPLIFIED_DATA_STRUCTURES_SORTEDBINTREE_H
+#ifndef SIMPLIFIED_DATA_STRUCTURES_SORTEDINTBINTREE_H
+#define SIMPLIFIED_DATA_STRUCTURES_SORTEDINTBINTREE_H
 
 #include <memory>
 #include <optional>
 #include <string>
+#include "Queue.h"
 
 using namespace std;
 
-#define Pointer shared_ptr<SortedBinTreeElement<T>>
-#define newSortedBinTreeElement(X) (make_shared<SortedBinTreeElement<T>>(X))
+#define Pointer shared_ptr<SortedIntBinTreeElement>
+#define newSortedIntBinTreeElement(X) (make_shared<SortedIntBinTreeElement>(X))
 
-template <class T> class SortedBinTreeElement {
+class SortedIntBinTreeElement {
 public:
     Pointer left;
     Pointer right;
-    T value;
-    explicit SortedBinTreeElement(T newValue);
+    int value;
+    explicit SortedIntBinTreeElement(int newValue);
 };
 
 
-template <class T> class SortedBinTree {
+class SortedIntBinTree {
 protected:
     Pointer root;
-    Pointer& findNearestNodeNonRecursive(T value, Pointer &start);
+    Pointer& findNearestNodeNonRecursive(int value, Pointer &start);
     Pointer& findLastLeft(Pointer &start);
-    void walkInOrderRecursive(void (*consumer)(T& value), Pointer start);
+    void walkInOrderRecursive(void (*consumer)(int& value), Pointer start);
 public:
-    SortedBinTree();
-    void insert(T value);
-    bool remove(T value);
-    bool has(T value);
-    void forEach(void (*consumer)(T& value));
+    SortedIntBinTree();
+    void insert(int value);
+    bool remove(int value);
+    bool has(int value);
+    void forEach(void (*consumer)(int& value));
 };
 
-template<class T>
-SortedBinTreeElement<T>::SortedBinTreeElement(T newValue) : value(newValue), left(nullptr), right(nullptr) {};
+SortedIntBinTreeElement::SortedIntBinTreeElement(int newValue) : value(newValue), left(nullptr), right(nullptr) {};
 
-template <class T>
-SortedBinTree<T>::SortedBinTree() : root(nullptr) {}
+SortedIntBinTree::SortedIntBinTree() : root(nullptr) {}
 
-template <class T>
-Pointer& SortedBinTree<T>::findNearestNodeNonRecursive(T value, Pointer &start) {
+Pointer& SortedIntBinTree::findNearestNodeNonRecursive(int value, Pointer &start) {
     enum Direction {D_NONE, D_LEFT, D_RIGHT} direction;
 
     Pointer current = start;
@@ -75,8 +73,7 @@ Pointer& SortedBinTree<T>::findNearestNodeNonRecursive(T value, Pointer &start) 
     }
 }
 
-template <class T>
-Pointer& SortedBinTree<T>::findLastLeft(Pointer &start) {
+Pointer& SortedIntBinTree::findLastLeft(Pointer &start) {
     if (start->left==nullptr) return start;
 
     Pointer current = start;
@@ -90,9 +87,8 @@ Pointer& SortedBinTree<T>::findLastLeft(Pointer &start) {
     return previous->left;
 }
 
-template<class T>
-void SortedBinTree<T>::insert(T value) {
-    Pointer tmp = newSortedBinTreeElement(value);
+void SortedIntBinTree::insert(int value) {
+    Pointer tmp = newSortedIntBinTreeElement(value);
     if (root==nullptr) {
         root = tmp;
         return;
@@ -105,8 +101,7 @@ void SortedBinTree<T>::insert(T value) {
     node = tmp;
 }
 
-template<class T>
-bool SortedBinTree<T>::remove(T value) {
+bool SortedIntBinTree::remove(int value) {
     if (root == nullptr) return false;
 
     Pointer& node = findNearestNodeNonRecursive(value, root);
@@ -115,7 +110,7 @@ bool SortedBinTree<T>::remove(T value) {
             node = node->left;
         } else {
             Pointer &next = findLastLeft(node->right);
-            Pointer tmp = newSortedBinTreeElement(next->value);
+            Pointer tmp = newSortedIntBinTreeElement(next->value);
             tmp->left = node->left;
             tmp->right = node->right;
             node = tmp;
@@ -127,20 +122,17 @@ bool SortedBinTree<T>::remove(T value) {
     return false;
 }
 
-template<class T>
-bool SortedBinTree<T>::has(T value) {
+bool SortedIntBinTree::has(int value) {
     Pointer node = findNearestNodeNonRecursive(value, root);
     return node!=nullptr;
 }
 
-template<class T>
-void SortedBinTree<T>::forEach(void (*consumer)(T&)) {
+void SortedIntBinTree::forEach(void (*consumer)(int&)) {
     if (root==nullptr) return;
     walkInOrderRecursive(consumer, root);
 }
 
-template<class T>
-void SortedBinTree<T>::walkInOrderRecursive(void (*consumer)(T &), Pointer start) {
+void SortedIntBinTree::walkInOrderRecursive(void (*consumer)(int &), Pointer start) {
     if (start->left!=nullptr) {
         walkInOrderRecursive(consumer, start->left);
     }
@@ -150,10 +142,7 @@ void SortedBinTree<T>::walkInOrderRecursive(void (*consumer)(T &), Pointer start
     }
 }
 
-
-
-
 #undef Pointer
-#undef newSortedBinTreeElement
+#undef newSortedIntBinTree
 
-#endif //SIMPLIFIED_DATA_STRUCTURES_SORTEDBINTREE_H
+#endif //SIMPLIFIED_DATA_STRUCTURES_SORTEDINTBINTREE_H

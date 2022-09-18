@@ -125,4 +125,11 @@ Pointer tmp = newIntDequeElement(value);
 
 ### Списък на класовете в програмата
 
-1. []
+1. [IntStack.h](/docs/IntStack.md) - целочислен стек
+2. [Stack.h](/docs/Stack.md) - стек
+3. [IntQueue.h](/docs/IntQueue.md) - целочислена опашка
+4. [Queue.h](/docs/Queue.md) - опашка
+5. [IntDeque.h](/docs/IntDeque.md) - целочислена двойно-свързана опашка /списък/
+6. [Deque.h](/docs/Deque.md) - двойно свързана опашка /списък/
+7. [SortedIntBinTree.h](/docs/SortedIntBinTree.h) - целочислено двоично сортирано дърво
+8. [SortedBinTree.h](/docs/SortedBinTree.h) - сортирано двоично дърво

@@ -5,6 +5,7 @@
 #include "IntStack.h"
 #include "IntQueue.h"
 #include "SortedBinTree.h"
+#include "SortedIntBinTree.h"
 
 using namespace std;
 
