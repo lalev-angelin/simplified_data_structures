@@ -87,4 +87,9 @@ int main() {
     tree.remove(5);
     tree.remove(3);
     tree.remove(1);
+    tree.insert(0);
+    tree.insert(9);
+    tree.insert(5);
+    tree.insert(7);
+    tree.forEach(intPrinter);
 }

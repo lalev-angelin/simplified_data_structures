@@ -29,7 +29,7 @@ protected:
     Pointer root;
     Pointer& findNearestNodeNonRecursive(T value, Pointer &start);
     Pointer& findLastLeft(Pointer &start);
-    void walkInOrderRecursive(void (*consumer)(T& value))
+    void walkInOrderRecursive(void (*consumer)(T& value), Pointer start);
 public:
     SortedBinTree();
     void insert(T value);
@@ -137,9 +137,23 @@ bool SortedBinTree<T>::has(T value) {
 }
 
 template<class T>
-void SortedBinTree<T>::forEach(void (*consumer)(T &)) {
-
+void SortedBinTree<T>::forEach(void (*consumer)(T&)) {
+    if (root==nullptr) return;
+    walkInOrderRecursive(consumer, root);
 }
+
+template<class T>
+void SortedBinTree<T>::walkInOrderRecursive(void (*consumer)(T &), Pointer start) {
+    if (start->left!=nullptr) {
+        walkInOrderRecursive(consumer, start->left);
+    }
+    consumer(start->value);
+    if (start->right!=nullptr) {
+        walkInOrderRecursive(consumer, start->right);
+    }
+}
+
+
 
 
 #undef Pointer
