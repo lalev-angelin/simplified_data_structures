@@ -80,25 +80,26 @@ public:
 По-нататък:
 
 ```c++
-class IntStack {
+template <class T> class Stack {
 protected:
     Pointer top;
 public:
-    IntStack();
-    void push(int data);
-    optional<int> pop();
-    optional<int> peek() const;
-    void forEach(void (*consumer)(int& value));
+    Stack();
+    void push(T data);
+    optional<T> pop();
+    optional<T> peek() const;
+    void forEach(void (*consumer)(T& element));
 };
 ```
 
-Класът IntStack представлява самия стек. Той има едно поле - top - което е указател към връха на стека, т.е. първият елемент в него.
+Класът Stack представлява самия стек. Той има едно поле - top - което е указател към връха на стека, т.е. първият елемент в него.
 
-Конструктурът IntStack е тривиален и инициализира top с nullptr, което обозначава началното състояние на стека - празно.
+Конструктурът Stack е тривиален и инициализира top с nullptr, което обозначава началното състояние на стека - празно.
 
 ```c++
-void IntStack::push(int data) {
-    Pointer tmp = newIntStackElement(data);
+template<class T>
+void Stack<T>::push(T data) {
+    Pointer tmp = newStackElement(data);
     tmp->next = top;
     top = tmp;
 }
@@ -110,11 +111,12 @@ void IntStack::push(int data) {
 Операцията push прилича на прикачане на вагони към влакова композиция, при която новият вагон отива най-отпред.
 
 ```c++
-optional<int> IntStack::pop() {
-if (top==nullptr) return {};
-Pointer tmp = top;
-top = top->next;
-return tmp->data;
+template<class T>
+optional<T> Stack<T>::pop() {
+    if (top==nullptr) return {};
+    Pointer tmp = top;
+    top = top->next;
+    return tmp->data;
 }
 ```
 
@@ -144,9 +146,10 @@ return tmp->data;
 също създава optional обект имплицитно /защото връщаната стойност на pop е декларирана като optional/
 
 
-Методът peek позволява да видим какво има на върха на стека без да вадим елемента от него.
+Методът **peek** позволява да видим какво има на върха на стека без да вадим елемента от него.
 ```c++
-optional<int> IntStack::peek() const {
+template<class T>
+optional<T> Stack<T>::peek() const {
     if (top==nullptr) return {};
     return top->data;
 }
@@ -159,11 +162,12 @@ optional<int> IntStack::peek() const {
 Последният елемент, разбира се, се познава по това, че неговият next елемент е празен.
 
 ```c++
-void IntStack::forEach(void (*consumer)(int &)) {
+template<class T>
+void Stack<T>::forEach(void (*consumer)(T& data)) {
     Pointer tmp = top;
     while (tmp!=nullptr) {
         consumer(tmp->data);
-        tmp=tmp->next;
+        tmp = tmp->next;
     }
 }
 ```
